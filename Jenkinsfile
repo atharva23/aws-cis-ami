@@ -7,8 +7,9 @@ pipeline {
         stage('Run Packer') {
             steps {
                 sh 'cd ~'
-                sh 'cd aws-cis-ami'
                 sh 'pwd'
+                
+               
             }
         }
     }
