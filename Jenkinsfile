@@ -6,7 +6,7 @@ pipeline {
             steps {
                 sh 'pwd'
                 
-                sh 'sudo ./packer.sh'
+                sh 'sudo packer build  -var-file=variables.json cis-ami.pkr.hcl'
                 
                
             }
