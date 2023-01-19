@@ -84,17 +84,14 @@ source "amazon-ebs" "cis-ami" {
 build {
   sources = ["source.amazon-ebs.cis-ami"]
 
-  provisioner "file"{
-    source = "./files"
-    destination = "/tmp"
+  provisioner "shell" {
+    script = "./scripts/install.sh"
   }
 
   provisioner "shell" {
     script = "./scripts/hardening.sh"
   }
 
-  provisioner "shell" {
-    script = "./scripts/install.sh"
-  }
+
 
 }
