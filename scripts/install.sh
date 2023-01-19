@@ -5,5 +5,15 @@
 
 # eg: sudo yum install -y nginx
 
-sudo yum update -y
-sudo yum upgrade -y
+
+sudo yum install git -y
+echo "running ansible installation"
+sudo amazon-linux-extras install ansible2 -y
+ansible --version
+
+echo  "ansible installed"
+
+
+
+
+
