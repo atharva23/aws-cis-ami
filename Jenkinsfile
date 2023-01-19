@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('Run Packer') {
             steps {
-                sh 'cd aws-cis-ami'
+                sh 'pwd'
                 sh 'packer build  -var-file=variables.json cis-ami.pkr.hcl'
             }
         }
