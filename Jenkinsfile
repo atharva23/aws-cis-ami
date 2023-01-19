@@ -7,8 +7,11 @@ pipeline {
         stage('Run Packer') {
             steps {
                 sh 'pwd'
-                sh 'sudo ./packer.sh'
                 
+                sh '''
+                cd ~
+                ./packer.sh
+                '''
                
             }
         }
