@@ -6,7 +6,7 @@ pipeline {
             steps {
                 sh 'pwd'
                 
-                sh './packer.sh'
+                sh 'sudo ./packer.sh'
                 
                
             }
