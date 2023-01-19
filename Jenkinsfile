@@ -6,8 +6,8 @@ pipeline {
     stages {
         stage('Run Packer') {
             steps {
-                sh 'cd ~'
                 sh 'pwd'
+                sh './packer.sh'
                 
                
             }
