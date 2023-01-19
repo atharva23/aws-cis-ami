@@ -3,8 +3,8 @@
     "profile": "default",
     "region": "eu-west-1",
     "source_ami": "ami-0fe0b2cf0e1f25c8a",
-    "vpc_id": "vpc-07685c33d556caa24",
-    "subnet_id": "subnet-067740cbb53a555cd",
+    "vpc_id": "vpc-09f6b17dd5b54de52",
+    "subnet_id": "subnet-0cff3772ef63910eb",
     "instance_type": "t3.2xlarge",
     "ami_name_prefix": "cis-hardened-aws-ami-new"
 }
