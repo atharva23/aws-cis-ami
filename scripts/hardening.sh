@@ -12,6 +12,6 @@ sudo ansible-playbook -i /etc/ansible/hosts  ~/AMAZON2-CIS-main/AMAZON2-CIS-main
 
 # remove ansible and press "Y" automatically
 yes Y | sudo yum remove ansible
-
+sudo rm -rf  AMAZON2-CIS-main
 sudo rm -rf .ansible
 sudo rm -rf .cache
