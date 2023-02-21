@@ -4,8 +4,8 @@
 # We can't directly copy the conf files to "root" owned directories via packer file provisioned
 # So we put the files in /tmp and move them by executing this shell script
 cd ~
-sudo cp -r  ~/amazon-linux-2 ~/tmp/files
-sudo ansible-playbook -i /etc/ansible/hosts  ~/amazon-linux-2/site.yml --become
+sudo cp -r  ~/AMAZON-LINUX-2 ~/tmp/files
+sudo ansible-playbook -i /etc/ansible/hosts  ~/AMAZON-LINUX-2/site.yml --become
 
 
 
