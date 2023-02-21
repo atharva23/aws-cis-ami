@@ -11,10 +11,6 @@ pipeline {
         sh './buildami.sh'
       }
     }
-    stage('Publish AMI') {
-      steps {
-        // Add code here to publish the AMI
-      }
-    }
+   
   }
 }
