@@ -1,0 +1,76 @@
+---
+- name: "3.3.1 | PATCH | Ensure source routed packets are not accepted"
+  block:
+      - name: "3.3.1 | PATCH | Ensure source routed packets are not accepted | IPv4"
+        sysctl:
+            name: '{{ item.name }}'
+            value: '{{ item.value }}'
+            sysctl_set: true
+            state: present
+            reload: true
+            ignoreerrors: true
+        notify: sysctl flush ipv4 route table
+        with_items:
+            - { name: net.ipv4.conf.all.accept_source_route, value: 0 }
+            - { name: net.ipv4.conf.default.accept_source_route, value: 0 }
+
+      - name: "3.3.1 | PATCH | Ensure source routed packets are not accepted | IPv6"
+        sysctl:
+            name: '{{ item.name }}'
+            value: '{{ item.value }}'
+            sysctl_set: true
+            state: present
+            reload: true
+            ignoreerrors: true
+        notify: sysctl flush ipv6 route table
+        with_items:
+            - { name: net.ipv6.conf.all.accept_source_route, value: 0 }
+            - { name: net.ipv6.conf.default.accept_source_route, value: 0 }
+  when:
+      - amazon2cis_rule_3_3_1
+      - amazon2cis_ipv6_required
+  tags:
+      - level1
+      - automated
+      - patch
+      - rule_3.3.1
+      - sysctl
+
+- name: "3.3.2 | PATCH | Ensure ICMP redirects are not accepted "
+  block:
+      - name: "3.3.2 | PATCH | Ensure ICMP redirects are not accepted | IPv4"
+        sysctl:
+            name: '{{ item.name }}'
+            value: '{{ item.value }}'
+            sysctl_set: true
+            state: present
+            reload: true
+            ignoreerrors: true
+        notify: sysctl flush ipv4 route table
+        with_items:
+            - { name: net.ipv4.conf.all.accept_redirects, value: 0 }
+            - { name: net.ipv4.conf.default.accept_redirects, value: 0 }
+
+      - name: "3.3.2 | PATCH | Ensure ICMP redirects are not accepted | IPv6"
+        sysctl:
+            name: '{{ item.name }}'
+            value: '{{ item.value }}'
+            sysctl_set: true
+            state: present
+            reload: true
+            ignoreerrors: true
+        notify: sysctl flush ipv6 route table
+        with_items:
+            - { name: net.ipv6.conf.all.accept_redirects, value: 0 }
+            - { name: net.ipv6.conf.default.accept_redirects, value: 0 }
+        when: amazon2cis_ipv6_required
+  when:
+      - amazon2cis_rule_3_3_2
+  tags:
+      - level1
+      - automated
+      - patch
+      - rule_3.3.2
+      - sysctls
+
+
