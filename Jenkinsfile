@@ -1,21 +1,26 @@
 pipeline {
-  agent any
-  stages {
-    stage('Clone') {
-      steps {
-        git 'https://github.com/atharva23/aws-cis-ami.git'
-      }
+    agent any
+    
+    stages {
+        
+        stage('Packer Validate') {
+            steps {
+                sh '''
+                packer validate -var-file=variables.json cis-ami.pkr.hcl
+                '''
+                
+               
+            }
+        }
+        
+        stage('Packer Build ') {
+            steps {
+                sh '''
+                packer build  -var-file=variables.json cis-ami.pkr.hcl
+                '''
+                
+               
+            }
+        }
     }
-    stage('Install Dependencies') {
-      steps {
-        sh 'cd aws-cis-ami && sudo ./install.sh'
-      }
-    }
-    stage('Build AMI') {
-      steps {
-        sh 'cd aws-cis-ami && ./buildami.sh'
-      }
-    }
-   
-  }
 }
