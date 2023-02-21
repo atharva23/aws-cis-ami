@@ -7,7 +7,7 @@ pipeline {
         stage('Packer Build ') {
             steps {
                 
-                sh './buildami.sh'
+                sh 'sudo ./buildami.sh'
                
                 
                
