@@ -7,7 +7,7 @@ pipeline {
         stage('Packer Build ') {
             steps {
                 
-                sh './build.sh'
+                sh './buildami.sh'
                
                 
                
