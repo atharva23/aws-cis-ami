@@ -83,6 +83,11 @@ source "amazon-ebs" "cis-ami" {
 # Building the Puppet Server AMI
 build {
   sources = ["source.amazon-ebs.cis-ami"]
+  
+  provisioner "file"{
+    source = "./AMAZON-LINUX-2"
+    destination = "/tmp"
+  }
 
   provisioner "shell" {
     script = "./scripts/install.sh"
