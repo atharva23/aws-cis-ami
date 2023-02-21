@@ -1,17 +1,20 @@
 pipeline {
-    agent any
-    
-    stages {
-        
-        
-        stage('Packer Build ') {
-            steps {
-                
-                sh 'sudo ./buildami.sh'
-               
-                
-               
-            }
-        }
+  agent any
+  stages {
+    stage('Clone repository') {
+      steps {
+        git 'https://github.com/atharva23/aws-cis-ami'
+      }
     }
+    stage('Build AMI') {
+      steps {
+        sh './buildami.sh'
+      }
+    }
+    stage('Publish AMI') {
+      steps {
+        // Add code here to publish the AMI
+      }
+    }
+  }
 }
