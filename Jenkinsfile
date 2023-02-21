@@ -2,12 +2,18 @@ pipeline {
     agent any
     
     stages {
-        stage('Checkout') {
+        
+        stage('Packer Validate') {
             steps {
-                checkout scm
+                sh '''
+                packer validate -var-file=variables.json cis-ami.pkr.hcl
+                '''
+                
+               
             }
         }
-        stage('Run Packer') {
+        
+        stage('Packer Build ') {
             steps {
                 sh '''
                 packer build  -var-file=variables.json cis-ami.pkr.hcl
