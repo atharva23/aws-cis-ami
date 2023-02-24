@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Build AMI') {
       steps {
-        sh  './buildami.sh'
+        sh  'ansible --version'
       }
     }
   }
