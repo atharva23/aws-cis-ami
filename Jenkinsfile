@@ -1,7 +1,7 @@
 pipeline {
   agent any
   stages {
-    stage('Install packer') {
+    
       stage('Install Packer') {
       steps {
         sh 'cd ~'
