@@ -4,7 +4,7 @@ pipeline {
     
       stage('Install Packer') {
       steps {
-        sh 'cd ~'
+       
        
         sh 'echo "export PATH=$PATH:~/packer" >> ~/.bashrc'
         sh 'source ~/.bashrc'
