@@ -4,10 +4,7 @@ pipeline {
     stage('Install packer') {
       steps {
         sh '''
-          
-          ll -a
           packer --version
-
         '''
       }
     }
