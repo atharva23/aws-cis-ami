@@ -4,9 +4,11 @@ pipeline {
     stage('Install packer') {
       steps {
         sh '''
-          sudo yum install -y yum-utils
-          sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo
-          sudo yum -y install packer
+          curl -O https://releases.hashicorp.com/packer/1.7.4/packer_1.7.4_linux_amd64.zip
+          unzip packer_1.7.4_linux_amd64.zip
+          mv packer /usr/local/bin/
+          packer --version
+
         '''
       }
     }
