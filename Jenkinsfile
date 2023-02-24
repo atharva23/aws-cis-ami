@@ -5,9 +5,7 @@ pipeline {
       stage('Install Packer') {
       steps {
         sh 'cd ~'
-        sh 'curl -O https://releases.hashicorp.com/packer/1.7.4/packer_1.7.4_linux_amd64.zip'
-        sh 'A'
-        sh 'unzip packer_1.7.4_linux_amd64.zip'
+       
         sh 'echo "export PATH=$PATH:~/packer" >> ~/.bashrc'
         sh 'source ~/.bashrc'
         sh 'packer --version'
