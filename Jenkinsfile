@@ -1,6 +1,13 @@
 pipeline {
   agent any
   stages {
+    stage('my path') {
+      steps {
+        sh '''
+          pwd
+        '''
+      }
+    }
     stage('Build AMI') {
       steps {
         sh '''
