@@ -5,6 +5,7 @@ pipeline {
       steps {
         sh '''
           packer --version
+          ansible --version
         '''
       }
     }
