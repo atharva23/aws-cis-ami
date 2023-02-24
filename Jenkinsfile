@@ -2,11 +2,14 @@ pipeline {
   agent any
   stages {
     stage('Install packer') {
+      stage('Install Packer') {
       steps {
-        sh '''
-          packer --version
-          ansible --version
-        '''
+        sh 'cd ~'
+        sh 'curl -O https://releases.hashicorp.com/packer/1.7.4/packer_1.7.4_linux_amd64.zip'
+        sh 'unzip packer_1.7.4_linux_amd64.zip'
+        sh 'echo "export PATH=$PATH:~/packer" >> ~/.bashrc'
+        sh 'source ~/.bashrc'
+        sh 'packer --version'
       }
     }
     stage('Build AMI') {
