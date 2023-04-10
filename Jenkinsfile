@@ -1,5 +1,9 @@
 pipeline {
-  agent any
+  agent {
+    docker {
+      image 'amazonlinux:latest'
+    }
+  }
   environment {
         PACKER = "/var/lib/jenkins/packer/packer"
   }  
