@@ -1,13 +1,16 @@
 pipeline {
   agent any
+  environment {
+        PACKER = "~/var/lib/jenkins/packer/packer"
+  }  
   stages {
-    
+      
       stage('Install Packer') {
       steps {
         sh '''       
         curl -O https://releases.hashicorp.com/packer/1.7.4/packer_1.7.4_linux_amd64.zip
         unzip -o packer_1.7.4_linux_amd64.zip -d ~/packer
-        /var/lib/jenkins/packer/packer --version
+        ${env.PACKER} --version
         aws --version
         '''
        
