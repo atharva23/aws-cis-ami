@@ -1,7 +1,7 @@
 pipeline {
   agent any
   environment {
-        PACKER = "~/var/lib/jenkins/packer/packer"
+        PACKER = "/var/lib/jenkins/packer/packer"
   }  
   stages {
       
