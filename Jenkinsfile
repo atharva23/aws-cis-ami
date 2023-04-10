@@ -23,7 +23,7 @@ pipeline {
           if [ $time_diff -lt 1 ]; then
             /var/lib/jenkins/packer/packer --version
             echo "Amazon Linux 2 AMI has changed in the last 1 day"
-            packer validate -var-file=variables.json cis-ami.pkr.hcl
+            var/lib/jenkins/packer/packer validate -var-file=variables.json cis-ami.pkr.hcl
             ami_value=$( /var/lib/jenkins/packer/packer  build  -var-file=variables.json cis-ami.pkr.hcl | awk '/^us-east-1:/ {print $2}')
             echo $ami_value
             aws ssm put-parameter --name "/gemini/latest-ami" --value $ami_value --type String --overwrite
