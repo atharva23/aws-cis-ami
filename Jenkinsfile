@@ -24,10 +24,10 @@ pipeline {
           current_date=$(date +%s)
           time_diff=$(( (current_date - $(date --date="$latest_ami_date" +%s)) / 86400 ))
           if [ $time_diff -lt 1 ]; then
-            /var/lib/jenkins/packer/packer --version
+            ${PACKER} --version
             echo "Amazon Linux 2 AMI has changed in the last 1 day"
-            var/lib/jenkins/packer/packer validate -var-file=variables.json cis-ami.pkr.hcl
-            ami_value=$( /var/lib/jenkins/packer/packer  build  -var-file=variables.json cis-ami.pkr.hcl | awk '/^us-east-1:/ {print $2}')
+            ${PACKER} validate -var-file=variables.json cis-ami.pkr.hcl
+            ami_value=$( ${PACKER}  build  -var-file=variables.json cis-ami.pkr.hcl | awk '/^us-east-1:/ {print $2}')
             echo $ami_value
             aws ssm put-parameter --name "/gemini/latest-ami" --value $ami_value --type String --overwrite
           else
