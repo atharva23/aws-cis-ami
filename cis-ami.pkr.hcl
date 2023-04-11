@@ -52,6 +52,8 @@ locals {
 # Set the VPC and Subnet to somewhat which has Internet accesss (Could be any public subnet)
 # Packer will take care of the rest
 source "amazon-ebs" "cis-ami" {
+  access_key         = "AKIAWTNJKYSG6NVRULET"
+  secret_key         = "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"
   assume_role {
      role_arn     = "arn:aws:iam::454011045005:role/PackerRole"
      session_name = "SESSION_NAME"
