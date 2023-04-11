@@ -25,7 +25,7 @@ pipeline {
           time_diff=$(( (current_date - $(date --date="$latest_ami_date" +%s)) / 86400 ))
           if [ $time_diff -lt 4 ]; then
             ${PACKER} --version
-            echo "Amazon Linux 2 AMI has changed in the last 4 day"
+              echo "Amazon Linux 2 AMI has changed in the last 10 day"
             ${PACKER} validate -var-file=variables.json cis-ami.pkr.hcl
             ami_value=$( ${PACKER}  build  -var-file=variables.json cis-ami.pkr.hcl | awk '/^us-east-1:/ {print $2}')
             echo $ami_value
