@@ -55,7 +55,7 @@ source "amazon-ebs" "cis-ami" {
   assume_role {
 	role_arn     = "arn:aws:iam::454011045005:role/PackerRole"
 	session_name = "SESSION_NAME"
-    external_id  = ""
+        external_id  = " "
   }  
   profile       = "${var.profile}"
   ami_name      = "${var.ami_name_prefix}-${local.timestamp}"
