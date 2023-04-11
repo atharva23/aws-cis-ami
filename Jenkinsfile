@@ -20,7 +20,7 @@ pipeline {
     stage('Build AMI') {
       steps {
         sh '''
-          latest_ami_date=$(aws ec2 describe-images --filters "Name=name,Values=cis-hardened-aws-ami-*" "Name=state,Values=available" "Name=architecture,Values=x86_64" --query 'reverse(sort_by(Images, &CreationDate))[0].CreationDate' --output text)
+          latest_ami_date=$(aws ec2 describe-images --filters "Name=name,Values=amzn2-ami-hvm-2.0.????????.?-x86_64-gp2" "Name=state,Values=available" "Name=architecture,Values=x86_64" --query 'reverse(sort_by(Images, &CreationDate))[0].CreationDate' --output text)
           current_date=$(date +%s)
           time_diff=$(( (current_date - $(date --date="$latest_ami_date" +%s)) / 86400 ))
           if [ $time_diff -lt 4 ]; then
