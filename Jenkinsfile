@@ -29,7 +29,7 @@ pipeline {
             ${PACKER} validate -var-file=variables.json cis-ami.pkr.hcl
             ami_value=$( ${PACKER}  build  -var-file=variables.json cis-ami.pkr.hcl | awk '/^us-east-1:/ {print $2}')
             echo $ami_value
-            aws ssm put-parameter --name "/gemini/latest-ami" --value $ami_value --type String --overwrite
+            
           else
             echo "Amazon Linux 2 AMI has not changed in the last 1 day no need to build new image"
           fi
