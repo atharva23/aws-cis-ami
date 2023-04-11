@@ -1,5 +1,10 @@
 pipeline {
   agent any
+  assume_role {
+        role_arn     = "arn:aws:iam::454011045005:role/PackerRole"
+        session_name = "SESSION_NEW"
+        external_id  = " " 
+    }
   environment {
         PACKER = "/var/lib/jenkins/packer/packer"
   }  
