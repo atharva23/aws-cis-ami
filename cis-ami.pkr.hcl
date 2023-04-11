@@ -52,11 +52,6 @@ locals {
 # Set the VPC and Subnet to somewhat which has Internet accesss (Could be any public subnet)
 # Packer will take care of the rest
 source "amazon-ebs" "cis-ami" {
-  assume_role {
-    role_arn     = "arn:aws:iam::454011045005:role/PackerRole"
-    session_name = "SESSION_NAME"
-    external_id  = " "
-  }  
   profile       = "${var.profile}"
   ami_name      = "${var.ami_name_prefix}-${local.timestamp}"
   instance_type = "${var.instance_type}"
@@ -64,11 +59,11 @@ source "amazon-ebs" "cis-ami" {
   vpc_id        = "${var.vpc_id}"
   subnet_id     = "${var.subnet_id}"
   associate_public_ip_address = "true"
-
+  iam_instance_profile= "PackerRole"
   // Amazon Linux 2 AMI ID
   source_ami    = "${var.source_ami}"
   ssh_username  = "ec2-user"
-
+  
   // Set the AMI's Name tag with timestamp
   tag {
     key         = "Name"
