@@ -12,7 +12,7 @@ pipeline {
       stage('Install Packer') {
       steps {
         sh '''    
-        yum install -y wget unzip
+        sudo yum install -y wget unzip
         curl -O https://releases.hashicorp.com/packer/1.7.4/packer_1.7.4_linux_amd64.zip
         unzip -o packer_1.7.4_linux_amd64.zip -d ~/packer
         ${PACKER} --version
