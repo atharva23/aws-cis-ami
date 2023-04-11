@@ -7,7 +7,7 @@ pipeline {
       
       stage('Install Packer') {
       steps {
-        sh '''
+        sh '''       
         curl -O https://releases.hashicorp.com/packer/1.7.4/packer_1.7.4_linux_amd64.zip
         unzip -o packer_1.7.4_linux_amd64.zip -d ~/packer
         ${PACKER} --version
@@ -23,7 +23,7 @@ pipeline {
           latest_ami_date=$(aws ec2 describe-images --filters "Name=name,Values=cis-hardened-aws-ami-*" "Name=state,Values=available" "Name=architecture,Values=x86_64" --query 'reverse(sort_by(Images, &CreationDate))[0].CreationDate' --output text)
           current_date=$(date +%s)
           time_diff=$(( (current_date - $(date --date="$latest_ami_date" +%s)) / 86400 ))
-          if [ $time_diff -lt 4 ]; then
+          if [ $time_diff -lt 1 ]; then
             ${PACKER} --version
             echo "Amazon Linux 2 AMI has changed in the last 1 day"
             ${PACKER} validate -var-file=variables.json cis-ami.pkr.hcl
