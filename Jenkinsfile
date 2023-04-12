@@ -23,7 +23,7 @@ pipeline {
           latest_ami_date=$(aws ec2 describe-images --filters "Name=name,Values=amzn2-ami-hvm-2.0.????????.?-x86_64-gp2" "Name=state,Values=available" "Name=architecture,Values=x86_64" --query 'reverse(sort_by(Images, &CreationDate))[0].CreationDate' --output text)
           current_date=$(date +%s)
           time_diff=$(( (current_date - $(date --date="$latest_ami_date" +%s)) / 86400 ))
-          if [ $time_diff -lt 10 ]; then
+          if [ $time_diff -lt 1 ]; then
             ${PACKER} --version
               echo "Amazon Linux 2 AMI has changed in the last 1 day"
             ${PACKER} validate -var-file=variables.json cis-ami.pkr.hcl
