@@ -1,8 +1,9 @@
 pipeline {
   agent any
   triggers {
-     cron('0 0 * * *')
+     cron('*/5 * * * *')
   }
+  
   environment {
         PACKER = "/var/lib/jenkins/packer/packer"
   }  
